@@ -1,0 +1,34 @@
+{
+    "name": "EyeTracking",
+    "maps": [
+        {
+            "name": "EyeTracking",
+            "id": "3951b217-5567-4075-ab4c-4cd14a5554be",
+            "actions": [
+                {
+                    "name": "GazePosition",
+                    "type": "Value",
+                    "id": "f13d2673-7420-4cda-b4bd-aa623148a91d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8bdb771e-f8dd-4157-bcd6-eb6f738e87b2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GazePosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

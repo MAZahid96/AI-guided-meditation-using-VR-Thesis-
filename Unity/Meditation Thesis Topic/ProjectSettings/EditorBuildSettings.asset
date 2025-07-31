@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Day Scene.unity
+    guid: 4cce698fecaeac1498d5c22ec035779e
+  - enabled: 1
+    path: Assets/Scenes/meditationScene.unity
+    guid: e70603b5d34b56f4487b2188c692a859
+  - enabled: 1
+    path: Assets/Scenes/Night Scene.unity
+    guid: 3079dbc3982a4564297c0a202969c864
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 2da3c98474ef149418217ce976b507cd, type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: d2d6f4274dac83543bade8d147d1d1c7, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: d8ac0220dc11f8447b7c681719b8ad99, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: f53e354f9701f5a48a3995fbca3823bc, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: eab522757ea2dd842a49e1f58e41e90d, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 87c695b58293f5749bccc96a8194b3ad, type: 2}

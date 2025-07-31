@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: cosmos4
+  m_Shader: {fileID: 4800000, guid: 79a11fef9c9fd164ab0d03d0dc23e0f4, type: 3}
+  m_Parent: {fileID: 2100000, guid: c46115dc7499f8e4c848c9c3242c4644, type: 2}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - ROT_ON
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _AnimOn: 0
+    - _Colorize: 0.59
+    - _D1Distort: 0.1
+    - _D1I: 1
+    - _D2Distort: 0.1
+    - _D2I: 0.8
+    m_Colors: []
+  m_BuildTextureStacks: []
