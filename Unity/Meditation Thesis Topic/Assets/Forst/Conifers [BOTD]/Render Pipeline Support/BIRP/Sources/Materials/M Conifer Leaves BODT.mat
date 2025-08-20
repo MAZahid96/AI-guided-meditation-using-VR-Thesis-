@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M Conifer Leaves BODT
-  m_Shader: {fileID: 4800000, guid: 6ae32366f15a64fc19f245f040af8f21, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6d74b6647c6a8244793871f05140fe32, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - GEOM_TYPE_LEAF
+  - _ALPHAPREMULTIPLY_ON
   - _EMISSION
   - _METALLICGLOSSMAP
   - _NORMALMAP
-  m_InvalidKeywords:
-  - _ALPHAPREMULTIPLY_ON
   - _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
@@ -65,6 +65,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _GlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: 5597dc21a8aed4e7ba2c0f93dc4b1d98, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -86,6 +90,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ShadowMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShadowOffset:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -129,8 +137,10 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _ShadowCulling: 0
+    - _Shininess: 0.078125
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SquashAmount: 1
     - _SrcBlend: 1
     - _SwapUVS: 0
     - _Tangents: 0
@@ -147,7 +157,9 @@ Material:
     - _AdvancedEdgeBending: {r: 0.6, g: 1.3, b: 0, a: 0}
     - _AverageCol: {r: 1, g: 1, b: 1, a: 0.5}
     - _BaseWindMultipliers: {r: 0.6, g: 1, b: 1, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.2258038, g: 0.4792453, b: 0.07505158, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HueVariation: {r: 0, g: 0.9, b: 0.8255172, a: 0.1}
+    - _TreeInstanceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TreeInstanceScale: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

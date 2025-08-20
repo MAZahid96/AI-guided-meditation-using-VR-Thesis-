@@ -14,29 +14,36 @@
 
 //     IEnumerator MeditationRoutine()
 //     {
-//         yield return new WaitForSeconds(5);
+//         yield return new WaitForSeconds(2);
+//         gpt.SendCustomPrompt("Begin guided meditation. Focus on slow breathing.");
+//         yield return new WaitForSeconds(15);
 
-//         gpt.SendCustomPrompt("Begin guided meditation. Start with deep breathing.");
-//         yield return Wait(10f);
+//         float meditationTime = 120f; // 2 minutes
+//         float elapsed = 0f;
 
-//         gpt.SendCustomPrompt("Breathe in.");
-//         yield return Wait(10f);
+//         while (elapsed < meditationTime)
+//         {
+//             gpt.SendCustomPrompt("Breathe in slowly.");
+//             yield return new WaitForSeconds(8);
 
-//         gpt.SendCustomPrompt("Breathe out.");
-//         yield return Wait(10f);
+//             gpt.SendCustomPrompt("Breathe out gently.");
+//             yield return new WaitForSeconds(8);
 
-//         gpt.SendCustomPrompt("Focus on the sound of your breath.");
-//         yield return Wait(10f);
+//             elapsed += 16f;
+//         }
 
-//         gpt.SendCustomPrompt("When you feel ready, gently open your eyes.");
-//         yield return Wait(10f);
+//         bool messageFinished = false;
+//         gpt.onResponseComplete = () => { messageFinished = true; };
 
-//         SceneManager.LoadScene("Night Scene");  // 
-//     }
+//         gpt.SendCustomPrompt("Your meditation has ended. Open your eyes when ready.");
 
-//     IEnumerator Wait(float t)
-//     {
-//         yield return new WaitForSeconds(t);
+//         // Wait until TTS finishes speaking
+//         yield return new WaitUntil(() => messageFinished);
+
+//         // Delay for 2 seconds after TTS ends (optional)
+//         yield return new WaitForSeconds(2);
+
+//         SceneManager.LoadScene("Night Scene");
 //     }
 // }
 using UnityEngine;
@@ -45,21 +52,29 @@ using System.Collections;
 
 public class Scene2Controller : MonoBehaviour
 {
-    OpenAIManager gpt;
+    private OpenAIManager gpt;
 
     void Start()
     {
         gpt = FindObjectOfType<OpenAIManager>();
+        if (gpt == null)
+        {
+            Debug.LogError("OpenAIManager not found in scene!");
+            return;
+        }
+
         StartCoroutine(MeditationRoutine());
     }
 
     IEnumerator MeditationRoutine()
     {
+        // Initial instruction
         yield return new WaitForSeconds(2);
         gpt.SendCustomPrompt("Begin guided meditation. Focus on slow breathing.");
         yield return new WaitForSeconds(15);
 
-        float meditationTime = 120f; // 2 minutes
+        // Main 2-minute meditation loop
+        float meditationTime = 120f; // total meditation time
         float elapsed = 0f;
 
         while (elapsed < meditationTime)
@@ -73,17 +88,18 @@ public class Scene2Controller : MonoBehaviour
             elapsed += 16f;
         }
 
+        // End meditation message
         bool messageFinished = false;
         gpt.onResponseComplete = () => { messageFinished = true; };
 
         gpt.SendCustomPrompt("Your meditation has ended. Open your eyes when ready.");
 
-        // Wait until TTS finishes speaking
+        // Wait for TTS to finish
         yield return new WaitUntil(() => messageFinished);
 
-        // Delay for 2 seconds after TTS ends (optional)
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2); // optional pause
 
+        // Change scene
         SceneManager.LoadScene("Night Scene");
     }
 }
