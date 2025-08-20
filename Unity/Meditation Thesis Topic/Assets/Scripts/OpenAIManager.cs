@@ -52,7 +52,7 @@ public class OpenAIManager : MonoBehaviour
         Debug.Log("Sending GPT request…");
 
         string payload = "{\"model\":\"gpt-3.5-turbo\",\"messages\":[" +
-                         "{\"role\":\"system\",\"content\":\"You are a meditation guide. Your replies must always be under 15 words and delivered in one short, calming sentence.\"}," +
+                         "{\"role\":\"system\",\"content\":\"You are a meditation guide. Your replies must always be under 15 words and delivered in one short, calming sentence. And each sentence should be different from the rest of the statements.\"}," +
                          "{\"role\":\"user\",\"content\":\"" + Escape(prompt) + "\"}]}";
 
         UnityWebRequest req = new UnityWebRequest(url, "POST");

@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.meditationthesistopic.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\Students\\VR_Meditation_GPT\\vr_meditation\\Unity\\Meditation Thesis Topic\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "Meditation Thesis Topic [Testing]"
+        }
+      }
+    }
+  ]
+}

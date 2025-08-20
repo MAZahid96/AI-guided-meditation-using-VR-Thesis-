@@ -49,16 +49,16 @@ Material:
     m_Floats:
     - _AnimOn: 1
     - _Colorize: 2
-    - _D1Distort: 0.2
-    - _D1I: 1.03
-    - _D1Scale: 2.09
+    - _D1Distort: 0.47
+    - _D1I: 0.549
+    - _D1Scale: 4.78
     - _D1Size: 2
-    - _D1Speed: 3
-    - _D2Distort: 1.33
-    - _D2I: 0.47
-    - _D2Scale: 11.36
+    - _D1Speed: 3.95
+    - _D2Distort: -9.3
+    - _D2I: 0
+    - _D2Scale: 1.23
     - _D2Size: 5
-    - _D2Speed: 3
+    - _D2Speed: 2.02
     - _FogDistort: 0.1
     - _FogI: 1
     - _FogSize: 1.81
@@ -70,5 +70,5 @@ Material:
     - _StarsI: 0.78
     m_Colors:
     - _Color: {r: 8.658824, g: 9.6, b: 11.984314, a: 3}
-    - _Rotation: {r: 0, g: 0, b: 0, a: 0}
+    - _Rotation: {r: -70.61, g: -38.12, b: -4.02, a: 14.24}
   m_BuildTextureStacks: []
