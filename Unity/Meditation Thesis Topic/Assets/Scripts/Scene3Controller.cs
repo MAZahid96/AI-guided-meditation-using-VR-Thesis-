@@ -6,7 +6,7 @@ public class Scene3Controller : MonoBehaviour
     {
         if (TTSManager.instance != null)
         {
-            TTSManager.instance.Speak("Thank you for meditating with me. Have a peaceful day.");
+            TTSManager.instance.Speak("Please Open Your Eyes and Thank you for meditating with me. Have a peaceful day.");
         }
         else
         {
