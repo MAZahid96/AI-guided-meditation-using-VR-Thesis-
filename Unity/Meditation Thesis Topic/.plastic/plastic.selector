@@ -1,4 +1,0 @@
-repository "Meditation Thesis Topic/Meditation Thesis Topic@9071794135912@cloud"
-  path "/"
-    br "/main"
-    co "/main"
