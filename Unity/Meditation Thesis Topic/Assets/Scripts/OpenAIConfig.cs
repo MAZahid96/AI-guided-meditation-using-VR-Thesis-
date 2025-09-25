@@ -1,7 +1,15 @@
 // File: Assets/Scripts/OpenAIConfig.cs
-
-[System.Serializable]
-public class OpenAIConfig
+// [System.Serializable]
+// public class OpenAIConfig
+// {
+//     public string api_key;
+// }
+// OpenAIConfig.cs
+namespace App.Config
 {
-    public string api_key;
+    [System.Serializable]
+    public class OpenAIConfig
+    {
+        public string api_key;
+    }
 }
