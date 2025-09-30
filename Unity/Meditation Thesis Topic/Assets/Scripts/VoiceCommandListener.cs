@@ -13,7 +13,7 @@ public class VoiceCommandListener : MonoBehaviour
         {
             recognizer = new SpeechRecognitionEngine();
             recognizer.LoadGrammar(
-                new Grammar(new GrammarBuilder(new Choices("yes", "no", "start")))
+                new Grammar(new GrammarBuilder(new Choices("yes", "no", "start","high","medium","low")))
             );
             recognizer.SetInputToDefaultAudioDevice();
             recognizer.SpeechRecognized += (_, e) =>

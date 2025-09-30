@@ -111,8 +111,9 @@ public class OpenAIManager : MonoBehaviour
 {
     // ---- Stress level support ----
     public enum StressLevel { Unknown, Low, Medium, High }
+    public StressLevel CurrentStress => currentStress;
     [SerializeField] private StressLevel currentStress = StressLevel.Unknown;
-
+    
     private string apiKey;
     private const string url = "https://api.openai.com/v1/chat/completions";
 
