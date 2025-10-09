@@ -271,15 +271,14 @@ public class OpenAIManager : MonoBehaviour
             "\"model\":\"gpt-3.5-turbo\"," +
             "\"messages\":[" +
                 "{\"role\":\"system\",\"content\":" + Quote(
-                    "You are a meditation guide. Output ONLY a list of short, unique lines (<=15 words each). " +
-                    "No numbering, no quotes, one cue per line. " +
-                    "Avoid repeating phrases; vary language. " +
-                    "Assume 10–15 seconds of silence between lines. " +
-                    "User stress level: " + currentStress + ". " + stressGuidance
+                    "You are a meditation guide. Replies must always be under 15 words, one short calming sentence, varied each time. " +
+                    "The user's current stress is: " + currentStress + ". " +
+                    stressGuidance
                 ) + "}," +
                 "{\"role\":\"user\",\"content\":" + Quote(prompt) + "}" +
             "]" +
         "}";
+
         var req = new UnityWebRequest(url, "POST");
         req.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(payload));
         req.downloadHandler = new DownloadHandlerBuffer();
