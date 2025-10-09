@@ -101,8 +101,9 @@ using UnityEngine.Networking;
 using System.Collections;
 using System.Text;
 using System;
-using App.Config; // <-- needed to see OpenAIConfig
+using App.Config; // your existing config type (OpenAIConfig)
 
+// --- JSON DTOs ---
 [Serializable] public class Choice { public Message message; }
 [Serializable] public class Message { public string role; public string content; }
 [Serializable] public class ChatResponse { public Choice[] choices; }
@@ -111,7 +112,6 @@ public class OpenAIManager : MonoBehaviour
 {
     // ---- Stress level support ----
     public enum StressLevel { Unknown, Low, Medium, High }
-    public StressLevel CurrentStress => currentStress;
     [SerializeField] private StressLevel currentStress = StressLevel.Unknown;
 
     private string apiKey;
@@ -121,6 +121,9 @@ public class OpenAIManager : MonoBehaviour
 
     // Raised after TTS finishes speaking the response (or immediately on error)
     public Action onResponseComplete;
+
+    // Expose current stress to other scripts
+    public StressLevel CurrentStress => currentStress;
 
     void Awake()
     {
@@ -139,14 +142,8 @@ public class OpenAIManager : MonoBehaviour
         TextAsset config = Resources.Load<TextAsset>("openai_config");
         if (config != null)
         {
-            try
-            {
-                apiKey = JsonUtility.FromJson<OpenAIConfig>(config.text).api_key;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError("Failed parsing openai_config.json: " + e);
-            }
+            try { apiKey = JsonUtility.FromJson<OpenAIConfig>(config.text).api_key; }
+            catch (Exception e) { Debug.LogError("Failed parsing openai_config.json: " + e); }
         }
         else
         {
@@ -154,7 +151,7 @@ public class OpenAIManager : MonoBehaviour
         }
     }
 
-    // -------- Public API --------
+    // -------- Public API (existing) --------
     public void SendCustomPrompt(string userPrompt)
     {
         StartCoroutine(SendPromptCoroutine(userPrompt));
@@ -178,20 +175,14 @@ public class OpenAIManager : MonoBehaviour
         Debug.Log($"Stress parsed from '{userText}' -> {currentStress}");
     }
 
-    /// <summary>
-    /// Optional helper: speaks the stress question, waits for your app to supply the answer,
-    /// then sends the real user prompt.
-    /// Provide a poll function that returns the latest recognized text (or null/empty if not yet).
-    /// </summary>
+    /// Optional helper: speaks the stress question, waits for your app to supply the answer, then sends the real prompt.
     public IEnumerator AskStressLevelThenPrompt(string finalUserPrompt, Func<string> pollForUserAnswer, float pollIntervalSeconds = 0.3f)
     {
-        // Ask user
         if (TTSManager.instance != null)
             TTSManager.instance.Speak("Before we start, is your stress level high, medium, or low?");
         else
             Debug.Log("ASK: Before we start, is your stress level high, medium, or low?");
 
-        // Wait for external UI/ASR to provide text
         string answer = null;
         while (string.IsNullOrEmpty(answer))
         {
@@ -203,7 +194,66 @@ public class OpenAIManager : MonoBehaviour
         yield return SendPromptCoroutine(finalUserPrompt);
     }
 
-    // -------- Internal request flow --------
+    // -------- NEW: text-only request (no TTS) --------
+    public void RequestText(string userPrompt, Action<string> onDone)
+    {
+        StartCoroutine(RequestTextCoroutine(userPrompt, onDone));
+    }
+
+    private IEnumerator RequestTextCoroutine(string prompt, Action<string> onDone)
+    {
+        if (string.IsNullOrEmpty(apiKey))
+        {
+            Debug.LogError("OpenAI API key is empty. Check Resources/openai_config.json.");
+            onDone?.Invoke(null);
+            yield break;
+        }
+
+        string stressGuidance = StressGuidance(currentStress);
+
+        var payload = "{" +
+            "\"model\":\"gpt-3.5-turbo\"," +
+            "\"messages\":[" +
+                "{\"role\":\"system\",\"content\":" + Quote(
+                    "You are a meditation guide. Output ONLY a list of short, unique lines (<=15 words each). " +
+                    "No numbering, no quotes, one cue per line. " +
+                    "Avoid repeating phrases; vary language. " +
+                    "Assume 10–15 seconds of silence between lines. " +
+                    "User stress level: " + currentStress + ". " + stressGuidance
+                ) + "}," +
+                "{\"role\":\"user\",\"content\":" + Quote(prompt) + "}" +
+            "]" +
+        "}";
+
+        var req = new UnityWebRequest(url, "POST");
+        req.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(payload));
+        req.downloadHandler = new DownloadHandlerBuffer();
+        req.SetRequestHeader("Content-Type", "application/json");
+        req.SetRequestHeader("Authorization", "Bearer " + apiKey);
+
+        yield return req.SendWebRequest();
+
+        if (req.result == UnityWebRequest.Result.Success)
+        {
+            string json = req.downloadHandler.text;
+            ChatResponse resp = null;
+            try { resp = JsonUtility.FromJson<ChatResponse>(json); }
+            catch (Exception e) { Debug.LogError("Failed to parse GPT response JSON: " + e + "\n" + json); }
+
+            string response = resp?.choices != null && resp.choices.Length > 0
+                ? resp.choices[0].message.content.Trim()
+                : null;
+
+            onDone?.Invoke(response);
+        }
+        else
+        {
+            Debug.LogError("GPT ERROR " + req.responseCode + ": " + req.downloadHandler.text);
+            onDone?.Invoke(null);
+        }
+    }
+
+    // -------- Internal request flow (existing speak-then-callback) --------
     private IEnumerator SendPromptCoroutine(string prompt)
     {
         if (string.IsNullOrEmpty(apiKey))
@@ -217,7 +267,6 @@ public class OpenAIManager : MonoBehaviour
 
         string stressGuidance = StressGuidance(currentStress);
 
-        // Build messages with stress-aware system prompt
         var payload = "{" +
             "\"model\":\"gpt-3.5-turbo\"," +
             "\"messages\":[" +
