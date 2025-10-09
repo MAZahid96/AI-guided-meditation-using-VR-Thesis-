@@ -1,4 +1,4 @@
-// using UnityEngine;
+﻿// using UnityEngine;
 // using UnityEngine.SceneManagement;
 // using System.Collections;
 
@@ -77,7 +77,7 @@ public class Scene2Controller : MonoBehaviour
     IEnumerator MeditationRoutine()
     {
         // Decide duration based on stress
-        var stress = gpt.CurrentStress;  // requires the getter we added earlier
+        var stress = gpt.CurrentStress;  // requires the getter in OpenAIManager
         float minutes = stress switch
         {
             OpenAIManager.StressLevel.Low => 3f,
@@ -96,29 +96,38 @@ public class Scene2Controller : MonoBehaviour
             _ => "Settle in and notice your breath.",
         };
 
+        // Brief pause then intro (does not count towards the timed session)
         yield return new WaitForSeconds(2f);
         yield return Speak($"Begin guided meditation for {minutes:0} minutes. {intro}");
 
-        // Main meditation loop
-        float elapsed = 0f;
+        // --- Wall-clock timing starts AFTER the intro finishes ---
+        float endTime = Time.time + meditationTime;
+
         const float inhaleSeconds = 4f;
         const float exhaleSeconds = 6f;
 
-        while (elapsed < meditationTime)
+        while (Time.time < endTime)
         {
+            // Inhale cue
             yield return Speak("Breathe in slowly.");
-            yield return new WaitForSeconds(inhaleSeconds);
+            float remaining = endTime - Time.time;
+            if (remaining <= 0f) break;
+            yield return new WaitForSeconds(Mathf.Min(inhaleSeconds, remaining));
 
+            // Exhale cue
+            remaining = endTime - Time.time;
+            if (remaining <= 0f) break;
             yield return Speak("Breathe out gently.");
-            yield return new WaitForSeconds(exhaleSeconds);
-
-            elapsed += inhaleSeconds + exhaleSeconds;
+            remaining = endTime - Time.time;
+            if (remaining <= 0f) break;
+            yield return new WaitForSeconds(Mathf.Min(exhaleSeconds, remaining));
         }
 
         // Outro
-
+        yield return Speak("Your meditation has ended. Open your eyes when ready.");
         yield return new WaitForSeconds(2f);
 
+        // Move on
         SceneManager.LoadScene("Night Scene");
     }
 
