@@ -1,0 +1,189 @@
+\chapter{Conclusion}
+
+This thesis evaluated an AI-guided VR meditation system integrating immersive
+visual environments, real-time voice interaction generated through GPT, and
+physiological monitoring via the Biofeedback~2000~Xpert system. The study
+compared VR meditation with conventional meditation using both
+physiological signals and self-reported measures of mindfulness, affect,
+presence, and satisfaction. This chapter concludes by summarising the findings
+and explicitly addressing the research questions and hypotheses posed at the
+start of the thesis.
+
+\section*{Addressing the Research Questions}
+
+\subsection*{RQ1: How does AI-guided voice interaction combined with adaptive audiovisual cues impact relaxation and mindfulness during VR meditation?}
+
+The AI-generated voice prompts and immersive VR environment were designed to
+support attentional focus and relaxation. Physiologically, VR meditation did
+not produce significantly stronger autonomic relaxation than conventional
+meditation, as HRV, heart rate, skin conductance, and temperature showed
+similar changes across conditions. However, VR participants demonstrated
+significantly reduced motion amplitude, suggesting improved physical stillness
+and reduced external distraction.
+
+Subjective responses further supported this outcome: VR users reported higher
+mindfulness scores on average (though not statistically significant) and
+markedly higher satisfaction and presence. These findings indicate that AI-guided verbal cues and immersive audiovisual feedback enhanced the \emph{subjective} experience of relaxation and engagement, even when physiological differences were modest.
+
+\textbf{Conclusion for RQ1:}  
+AI-guided VR meditation enhanced subjective relaxation, presence, and
+engagement, partially supporting the hypothesis. The improvement was visible
+mainly in subjective experience rather than in autonomic physiology.
+
+\subsection*{RQ2: What role do closed-eye visual effects play in enhancing perceived meditation depth?}
+
+The VR system incorporated closed-eye visualisation effects (e.g.\ breathing light) designed to support deep focus during phases where users naturally
+closed their eyes. Questionnaire data showed that VR participants reported
+significantly higher presence and immersion compared to the conventional group.
+Open-ended responses frequently mentioned feeling “transported,” “calm,” or
+“more focused,” attributing these effects to the immersive visuals.
+
+While no physiological signal directly isolated the specific contribution of closed-eye visuals, behavioural and subjective indicators suggest that these effects supported deeper engagement.
+
+\textbf{Conclusion for RQ2:}  
+Closed-eye VR visual effects contributed meaningfully to perceived immersion
+and calmness, supporting the hypothesis that visual feedback enhances perceived
+meditation depth.
+
+\subsection*{RQ3: Can physiological and self-reported data effectively track meditation effectiveness in an AI-guided VR environment?}
+
+The study demonstrated that combining physiological and questionnaire data
+provides complementary insights into meditation effectiveness. Physiological
+signals captured acute relaxation markers such as increased temperature,
+stable or reduced heart rate, and decreased movement. Questionnaire results
+revealed subjective states (presence, satisfaction, mindfulness) that were not
+directly observable through biofeedback alone.
+
+The two data sources aligned in several ways. For example, motion reduction in
+the VR group corresponded with higher presence and satisfaction scores.
+However, autonomic markers such as HRV did not differentiate strongly between
+conditions, suggesting that short meditation windows may limit physiological
+detectability.
+
+\textbf{Conclusion for RQ3:}  
+Yes, combined physiological and self-report data provided a valid and
+multi-dimensional assessment of meditation effectiveness. This supports the
+hypothesis that integrating biofeedback with subjective reports is essential
+for evaluating VR-based meditation systems.
+
+\section*{Overall Interpretation}
+
+Taken together, the findings show that while physiological relaxation responses
+were similar between VR and conventional meditation, the VR condition offered
+clear experiential advantages. Participants felt more immersed, more satisfied,
+and more positively engaged when guided by real-time AI in a virtual environment. The behavioural stillness observed during VR meditation indicates
+that immersive systems may facilitate attentional stability even when
+short-term autonomic changes are subtle.
+
+The present study should be interpreted as exploratory rather than confirmatory, with the primary aim of identifying trends and experiential differences rather than establishing definitive causal effects. Although an a priori power analysis indicated a larger ideal sample size, practical constraints associated with time-intensive VR sessions and physiological sensor setup limited recruitment. Consequently, the statistical analyses were designed to identify trends and medium-to-large effects rather than to provide definitive confirmatory evidence.
+
+\section*{Final Remarks}
+
+The results demonstrate that VR meditation, when combined with AI-guided interaction and multimodal biofeedback, is a promising platform for delivering accessible and engaging stress-reduction interventions. Although the system did not show superior physiological outcomes over traditional meditation, it consistently improved subjective experience and behavioural stillness, two widely recognised components of effective meditative practice. An important consideration is that the VR group included a higher proportion of meditation-naive participants. Rather than undermining the findings, this may highlight a practical advantage of VR-based
+meditation: immersive guidance and multisensory cues may be particularly
+beneficial for users without prior meditation experience. For such users,
+VR may lower the entry barrier by providing structured attention anchors
+and clear breathing guidance, which could explain the higher satisfaction ratings observed in the VR condition.
+Presence was assessed only in the VR condition using IPQ-derived items, where participants reported a moderately positive sense of being "inside" the virtual environment.
+
+Future systems may extend these findings through longer interventions, improved
+sensing technologies, and more adaptive real-time feedback loops. As VR
+technologies continue to evolve, AI-guided immersive meditation holds strong
+potential as a next-generation tool for mental wellbeing and personalised
+relaxation training.
+
+\chapter{Future Work}
+
+The present study demonstrated that AI-guided VR meditation is technically
+feasible and subjectively well received, but it also revealed several
+limitations and opportunities for further development. Building on the
+findings and on observations made during the user study, this section outlines
+promising directions for future work.
+
+\section{Adaptive Biofeedback with Modern Sensors}
+
+In the current system, physiological data from the Biofeedback 2000 Xpert
+were recorded and analysed offline. GPT-generated guidance was therefore based
+on a pre-defined script and phase structure rather than on truly live
+physiological changes. One natural extension of this work is to move towards a
+\emph{closed-loop} meditation system in which modern sensors provide
+continuous, low-latency biofeedback directly to the AI model.
+
+Future versions of the system could integrate compact, wearable devices
+(e.g.\ wrist-based Photoplethysmography (PPG), Electrocardiography (ECG) patches, skin conductance sensors, or
+camera-based remote PPG) that stream heart rate, heart rate variability,
+respiration proxies, skin conductance level, or even facial expressions in
+real time. These data could be transformed into simple, interpretable
+features (such as ``current arousal level'' or ``trend of relaxation'') and
+fed into the GPT-based meditation guide via structured prompts or tool calls.
+
+This would enable the AI to dynamically adapt its behaviour, for example by:
+\begin{itemize}
+    \item delivering slower, grounding cues when arousal remains high,
+    \item prolonging calming phases if relaxation is still progressing,
+    \item offering reassurance if stress markers increase again,
+    \item or gently re-focusing attention if motion or micro-movements indicate restlessness.
+\end{itemize}
+
+Such a system would turn the AI guide from a static narrator into a responsive
+meditation coach that tailors language, pacing, and focus to each user's
+moment-to-moment physiological state. Exploring the usability, robustness,
+and clinical relevance of such adaptive biofeedback loops is a compelling
+avenue for future research. Such closed-loop systems would also require careful validation to avoid over-adaptation or intrusive guidance that could disrupt meditative flow.
+
+
+\section{Eye-Closure Detection and Comfort-Aware Visual Design}
+
+During the user study, several participants reported discomfort caused by the
+bright ``breathing light'' used as a visual focus cue. Despite being
+instructed to close their eyes both by the examiner and by the AI guide, some
+participants did not fully close their eyes or opened them intermittently,
+which led to irritation and distraction. This highlights an important
+practical limitation of the current setup: the system assumes eye closure,
+but it does not actually monitor or respond to it.
+
+Future work could address this by incorporating \emph{eye-closure detection}
+directly into the VR system. Many modern head-mounted displays already
+integrate eye-tracking or infrared-based sensors that can estimate eyelid
+closure. These signals could be used to:
+
+\begin{itemize}
+    \item detect when the user keeps their eyes open during phases intended for closed-eye meditation,
+    \item automatically dim or switch off bright stimuli when the eyes are (re-)opened,
+    \item trigger adaptive guidance, for example a short reminder such as:
+    ``If it feels comfortable, you may gently close your eyes again.''
+\end{itemize}
+
+Combining eye-closure detection with adaptive visual design would improve both
+comfort and immersion. For instance, the system could gradually reduce
+brightness over time, or switch from high-intensity focus cues to softer,
+peripheral visualisation once eye closure is detected reliably. Future studies
+could systematically compare variants of the breathing light (colour,
+intensity, frequency, and position in the field of view) and evaluate their
+impact on comfort, adherence to instructions, and depth of meditation.
+
+\section{Extended Protocols and Personalisation}
+
+Another limitation of the present work is the relatively short, single-session
+protocol. Future studies should investigate longer-term interventions with
+multiple sessions over days or weeks, enabling the analysis of learning
+effects, habit formation, and more stable physiological changes. In such
+longer protocols, the AI guide could gradually adapt its language and
+difficulty level based on past performance, preferences, or self-reported
+goals (e.g.\ stress reduction, emotional regulation, or sleep improvement).
+Additionally, combining the proposed real-time biofeedback and eye-closure
+monitoring with individual preference profiles (such as preferred voice tone,
+music, or visual style) could lead to highly personalised meditation journeys.
+Exploring how much personalisation is helpful, and where it might become
+overwhelming or counterproductive, is an important question for future work.
+
+\section*{Summary}
+In summary, future work should move towards more adaptive, sensor-driven, and
+user-aware VR meditation systems. Modern wearable and integrated sensors can
+provide rich, real-time input to GPT-based guidance, enabling closed-loop
+adaptations to physiological state. At the same time, eye-closure detection
+and comfort-aware visual design can address practical issues observed in this
+study, such as discomfort from bright stimuli and inconsistent adherence to
+instructions. Together, these developments offer a concrete roadmap for
+improving both the effectiveness and the usability of AI-guided VR meditation
+environments.

@@ -1,0 +1,138 @@
+\documentclass[headsepline,footsepline,12pt,textcomp=full]{scrreprt}
+\usepackage{scrhack}
+\usepackage{csquotes}
+\usepackage[hidelinks]{hyperref}
+\usepackage{times}
+\PassOptionsToPackage{full}{textcomp}
+
+
+\usepackage{graphicx,color}
+\usepackage{url}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{longtable}
+\usepackage{tabularx}       % Fuer Tabellen laenger als eine Seite
+\usepackage{multicol}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{textcomp}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{newtxtext}
+\usepackage{scrlayer-scrpage}
+\usetikzlibrary{arrows.meta, positioning, shapes.geometric}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage[automark]{scrpage2}
+% \pagestyle{scrheadings}
+% Kopf- und Fußzeile
+\clearscrheadfoot 
+\chead{\headmark} % automatischen Kapitelnamen rein
+\ofoot[\pagemark]{\pagemark} % oben rechts Seitenzahl laut Richtlinie
+\ifoot{\invnr} % automatischen Kapitelnamen rein
+
+\pagestyle{scrheadings}
+
+% --------------------
+
+% Seitendefinitionen
+
+\setlength{\topmargin}{1.5cm}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{20pt}
+\setlength{\topskip}{12pt}
+\setlength{\evensidemargin}{0pt}
+\setlength{\oddsidemargin}{0pt}
+\setlength{\textheight}{240mm}
+\setlength{\textwidth}{160mm}
+\setlength{\voffset}{-2cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+
+
+\input{inc/profile.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\invnr}{}
+
+\begin{document}
+
+\input{inc/title}
+\pagenumbering{roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\input{inc/abbreviations}
+\newpage
+
+\pagenumbering{arabic}
+\input{inc/acknowlgement}
+\input{inc/Abstract}
+
+\input{inc/intro}
+\input{inc/Literature Review}
+\input{inc/methodology}
+\input{inc/Result Section}
+\input{inc/Conclusion and future work}
+
+% Literaturverzeichniss
+\appendix
+\include{inc/appendix}
+\newpage
+% \bibliographystyle{alpha}
+% % \bibliographystyle{apalike}
+% \bibliography{bibs/litDB}
+\bibliographystyle{IEEEtran}
+\bibliography{bibs/litDB}
+
+
+\newenvironment{declaration}
+  {\cleardoublepage\chapter*{Declaration}%
+   \addcontentsline{toc}{chapter}{Declaration}}
+  {}
+\begin{declaration}
+\noindent I, \saauthor, hereby declare that the thesis entitled "VR Meditation:
+Enhancing Relaxation through Adaptive
+Audiovisual Cues and Biofeedback" and the work presented within it are entirely my own. 
+I confirm that:
+
+\begin{itemize}
+    \item This work was carried out wholly or mainly during my candidature for a research degree at this University.
+    
+    \item Where any part of this thesis has previously been submitted for a degree or any other qualification at this or any other institution, this has been clearly stated.
+    
+    \item Where I have consulted the published work of others, this has been clearly attributed.
+    
+    \item Where I have quoted from the work of others, the source has always been given. Except for such quotations, this thesis is entirely my own work.
+    
+    \item I have acknowledged all major sources of assistance.
+    
+    \item Where the thesis includes work undertaken jointly with others, I have clearly indicated what was carried out by others and what I contributed myself.
+\end{itemize}
+
+\vspace{2em}
+
+\noindent\textbf{Signed:}\\[1em]
+\rule{25em}{0.5pt}
+
+\vspace{2em}
+
+\noindent\textbf{Date:}\\[1em]
+\rule{25em}{0.5pt}
+
+\end{declaration}
+
+
+\end{document}
+
+
+
